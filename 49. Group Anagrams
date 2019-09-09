@@ -1,0 +1,23 @@
+class Solution {
+public:
+    vector<vector<string>> groupAnagrams(vector<string>& strs) 
+    {
+        vector<vector<string>> anagrams;  //The file to be populated and returned
+        
+        unordered_map<string, vector<string>> mapStore; //Hash map to store original elements with the key being their sorted form
+        
+        for(string s:strs)
+        {
+            string t = s;
+            sort(t.begin(), t.end());
+            mapStore[t].push_back(s); //Key: Sorted form, Value: Original Form
+        }
+        
+        for(auto p:mapStore)
+        {
+            anagrams.push_back(p.second);  //Populate the returning list according to their sorted form in the hash map
+        }
+        
+        return anagrams;
+    }
+};
