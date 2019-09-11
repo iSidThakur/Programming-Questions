@@ -1,0 +1,28 @@
+class Solution {
+public:
+    string addBinary(string a, string b) 
+    {
+        //Initializations
+        int asize = a.size() - 1;
+        int bsize = b.size() - 1;
+        
+        int carry = 0;
+        string answer = "";
+        
+        //While any one of the conditions remain true;
+        while( asize>=0 || bsize>= 0 || carry)
+        {
+            int num1 = asize<0?0:a[asize]-'0'; //If i has completed iteration through the string, set num1 to zero;
+            int num2 = bsize<0?0:b[bsize]-'0'; //If not, pick up corresponding integer value by using -'0';
+            
+            int sum = num1 + num2 + carry;
+            answer.push_back(sum%2 + '0');
+            
+            carry = sum/2;
+            asize--; bsize--;
+        }
+        
+        reverse(answer.begin(), answer.end());
+        return answer;
+    }
+};
