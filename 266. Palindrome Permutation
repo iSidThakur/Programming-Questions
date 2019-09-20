@@ -1,0 +1,21 @@
+class Solution {
+public:
+    bool canPermutePalindrome(string s) 
+    {
+        vector<int> arr(128, 0); //Array solution
+        
+        for(int i = 0; i<s.size(); i++)
+        {
+            arr[s[i]]++;
+        }
+        
+        int count = 0;
+        
+        for(int i = 0; i<128; i++)
+        {
+            count+= arr[i]%2;
+        }
+        
+        return count <= 1;
+    }
+};
