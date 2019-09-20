@@ -1,0 +1,22 @@
+class Solution {
+public:
+    void moveZeroes(vector<int>& nums) 
+    {
+        int read = 0, write = 0; //Using two pointer approach
+        
+        while(read<nums.size() && write<nums.size())
+        {
+            if(nums[read]!=0)
+            {
+                nums[write++] = nums[read++];
+            }
+            else
+                read++;
+        }
+        
+        for(int i=write; i<nums.size(); i++)
+        {
+            nums[i] = 0;
+        }
+    }
+};
