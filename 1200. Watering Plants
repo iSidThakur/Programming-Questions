@@ -1,0 +1,41 @@
+//Google has asked this question in it's Online Assesment tests;
+
+class Solution
+{
+  public:
+    int findSteps(vector<int>& arr, int capacity)
+    {
+        if(arr.empty())
+            return -1;
+        if(capacity < *max_element(arr.begin(), arr.end()))
+            return -1;
+        
+        int currentCapacity = capacity, steps = 0;
+        
+        for(int i = 0; i<arr.size(); i++)
+        {
+            if(currentCapacity < arr[i])
+            {
+                currentCapacity = capacity;
+                steps += 2*i;
+            }
+            
+            currentCapacity -= arr[i];
+            steps++;
+        }
+        
+        return steps;
+    }
+};
+
+int main() {
+    Solution S = Solution();
+    
+    vector<int> arr = {16, 23, 14, 1};
+    int waterCapacity = 15;
+    
+    int steps = S.findSteps(arr, waterCapacity);
+    cout<<"\n The number of steps will be: "<<steps;
+    
+    return 0;
+}
