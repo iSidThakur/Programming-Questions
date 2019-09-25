@@ -1,0 +1,37 @@
+class Solution {
+public:
+    ListNode* plusOne(ListNode* head) 
+    {
+        ListNode *p = reverse(head);
+        ListNode *temp = p;
+        
+        while(p->val + 1 == 10)
+        {
+            p->val = 0;
+            
+            if(!p->next)
+                p->next = new ListNode(0);
+            
+            p = p->next;
+        }
+        
+        p->val += 1;
+        
+        return reverse(temp);
+    }
+    
+    ListNode *reverse(ListNode *head)
+    {
+        ListNode *temp, *prev = NULL, *curr = head;
+        
+        while(curr!= NULL)
+        {
+            temp = curr->next;
+            curr->next = prev;
+            prev = curr;
+            curr = temp;
+        }
+        
+        return prev;
+    }
+};
