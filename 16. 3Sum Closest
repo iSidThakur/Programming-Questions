@@ -1,0 +1,36 @@
+class Solution {
+public:
+    int threeSumClosest(vector<int>& nums, int target) 
+    {
+        if(nums.size() < 3)
+            return 0;
+        //Sorting the input array so we can reduce time complexity from O(n^3) to O(n^2)
+        
+        sort(nums.begin(), nums.end());
+        
+        int answer = nums[0] + nums[1] + nums[2];
+        
+        for(int i = 0; i<nums.size(); i++)
+        {
+            int frontPointer = i + 1;
+            int endPointer = nums.size() - 1;
+            
+            while(frontPointer < endPointer)
+            {
+                int currentSum = nums[i] + nums[frontPointer] + nums[endPointer];
+                
+                if(currentSum == target)
+                    return currentSum;
+                if(abs(target - currentSum) < abs(target - answer))
+                    answer = currentSum;
+                
+                if(currentSum < target)
+                    frontPointer++;
+                else if(currentSum > target)
+                    endPointer--;
+            }
+        }
+        
+        return answer;
+    }
+};
