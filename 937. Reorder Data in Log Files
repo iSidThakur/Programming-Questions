@@ -1,0 +1,37 @@
+class Solution {
+public:
+    vector<string> reorderLogFiles(vector<string>& logs) 
+    {
+        stable_sort(logs.begin(), logs.end(), compare);
+        return logs;
+    }
+    
+    static bool compare(string a, string b)
+    {
+        int i = a.find(' ');
+        int j = b.find(' ');
+        
+        if(isdigit(a[i+1]))
+        {
+            if(isdigit(b[j+1]))
+                return false;
+            //Both digits
+            else
+                return false;
+            //a is digit log, b is letter log b>a
+        }
+        else
+        {
+            if(isdigit(b[j+1]))
+                return true;
+            //b is digit log, a is letter log; return true
+            else
+            {
+                if(a.substr(i) == b.substr(j))//Break tie if entire post ID string is same
+                    return a.substr(0, i) < b.substr(0, j);
+                else //Else return lexicographic order
+                    return a.substr(i) < b.substr(j);
+            }
+        }
+    }
+};
