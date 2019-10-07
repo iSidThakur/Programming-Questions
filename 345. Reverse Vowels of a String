@@ -1,0 +1,26 @@
+class Solution {
+public:
+    string reverseVowels(string s) 
+    {
+        //
+        if(s.size() <2)
+            return s;
+        
+        set<char> vowelSet = {'a', 'e', 'i', 'o', 'u', 'A', 'E', 'O', 'I', 'U'};
+        
+        int i = 0, j = s.size() - 1;
+        
+        while(i<j)
+        {
+            while(i<j && vowelSet.find(s[i])==vowelSet.end())
+                i++;
+            while(i<j && vowelSet.find(s[j]) == vowelSet.end())
+                j--;
+            
+            swap(s[i++], s[j--]);
+        }
+        
+        
+        return s;
+    }
+};
